@@ -6,4 +6,8 @@ development:
   port: 5432
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  host: <%= ENV['HOST_NAME'] %>
+  user: <%= ENV['USER_NAME'] %>
+  password: <%= ENV['PASSWORD'] %>
+  dbname: <%= ENV['DATABASE_NAME'] %>
+  port: <%= ENV['DATABASE_PORT'] %>

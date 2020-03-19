@@ -1,0 +1,6 @@
+development:
+  host: localhost
+  user: abchi
+  password: 
+  dbname: mtga_deckconverter
+  port: 5432

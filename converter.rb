@@ -3,7 +3,11 @@ Bundler.require
 require "yaml"
 require "erb"
 
-$dbconf = YAML.load(ERB.new(File.read("./database.yml")).result)["development"]
+if development? then
+    $dbconf = YAML.load(ERB.new(File.read("./database.yml")).result)["development"]
+else
+    $dbconf = YAML.load(ERB.new(File.read("./database.yml")).result)["production"]
+end
 @database = PG::connect($dbconf)
 
 def read_deck_list(deck_list)

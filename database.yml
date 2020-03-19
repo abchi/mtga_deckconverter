@@ -4,3 +4,6 @@ development:
   password: 
   dbname: mtga_deckconverter
   port: 5432
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>

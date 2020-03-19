@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" type="text/css" href="/form.css">
+  <title><%= @title %></title>
+</head>
+<body>
+<header>
+<h1><%= @title %></h1>
+<nav>
+使い方
+<ul>
+<li>左のボックスにデッキレシピを貼り付ける。(MTGA, MOのリストが使用出来ます。)</li>
+<li>変換ボタンを押す。</li>
+<li>右のボックスに結果が出力されます。(変換出来なかったカードは空白になります。)</li>
+<li>対応しているフォーマットはヒストリックです。</li>
+</ul>
+</nav>
+</header>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/form.js"></script>
+<%= yield %>
+</body>
+</html>

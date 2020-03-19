@@ -1,0 +1,15 @@
+body {
+    color: #000000;
+    background: #88b7f1;
+}
+
+textarea {
+    resize: none;
+    width:600px;
+    height:800px;
+}
+
+.box1, .box2, .box3 {
+    float: left;
+    margin: 10px
+}

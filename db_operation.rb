@@ -54,7 +54,7 @@ def mtg_cards(set)
         else
             if card.layout == "split" then
                 if hash[:number] == card.number then
-                    hash.store(:name_en, card.name + " // " + hash[:name_en])
+                    hash.store(:name_en, hash[:name_en] + " // " + card.name)
                 else
                     hash.store(:name_en, card.name)
                 end

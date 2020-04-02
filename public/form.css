@@ -9,6 +9,16 @@ textarea {
     height:800px;
 }
 
-.box1, .box2 {
-    margin: 10px
+.box {
+    width: 750px;
+}
+
+.textarea {
+    float: left;
+    margin: 10px;
+}
+
+.submit_button {
+    float: left;
+    margin: 10px;
 }

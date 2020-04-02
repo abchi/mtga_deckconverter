@@ -4,12 +4,11 @@ body {
 }
 
 textarea {
-    resize: none;
+    resize: both;
     width:600px;
     height:800px;
 }
 
-.box1, .box2, .box3 {
-    float: left;
+.box1, .box2 {
     margin: 10px
 }

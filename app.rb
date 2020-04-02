@@ -9,15 +9,13 @@ title = "MTG ARENA DECK CONVERTER"
 get "/" do
     @title = title
     @database = PG::connect($dbconf)
-    @input_list = ""
-    @output_list = ""
+    @deck_list = ""
     erb :mtga_deck_converter, :layout => :layout
 end
 
 post "/" do
     @title = title
     @database = PG::connect($dbconf)
-    @input_list = params[:input_list]
-    @output_list = text_conversion(read_deck_list(params[:input_list]), "ja")
+    @deck_list = text_conversion(read_deck_list(params[:deck_list]), "ja")
     erb :mtga_deck_converter, :layout => :layout
 end

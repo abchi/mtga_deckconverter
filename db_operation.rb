@@ -54,7 +54,11 @@ def mtg_cards(set)
         else
             if card.layout == "split" then
                 if hash[:number] == card.number then
-                    hash.store(:name_en, hash[:name_en] + " // " + card.name)
+                    if card.names[0] == card.name then
+                        hash.store(:name_en, card.name + " // " + hash[:name_en])
+                    else
+                        hash.store(:name_en, hash[:name_en] + " // " + card.name)
+                    end
                 else
                     hash.store(:name_en, card.name)
                 end
@@ -68,7 +72,11 @@ def mtg_cards(set)
                 card.foreign_names.each do |foreign_name|
                     if foreign_name.language == "Japanese" then
                         if hash[:number] == card.number && card.layout == "split" then
-                            hash.store(:name_ja, foreign_name.name + " // " + hash[:name_ja])
+                            if card.names[0] == card.name then
+                                hash.store(:name_ja, foreign_name.name + " // " + hash[:name_ja])
+                            else
+                                hash.store(:name_ja, hash[:name_ja] + " // " + foreign_name.name)
+                            end
                         else
                             hash.store(:name_ja, foreign_name.name)
                         end

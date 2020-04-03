@@ -62,6 +62,12 @@ def mtg_cards(set)
                 else
                     hash.store(:name_en, card.name)
                 end
+            elsif card.layout == "transform"
+                if card.names[0] == card.name then
+                    hash.store(:name_en, card.name)
+                else
+                    hash.store(:name_en, card.names[0])
+                end
             else
                 hash.store(:name_en, card.name)
             end
@@ -76,6 +82,12 @@ def mtg_cards(set)
                                 hash.store(:name_ja, foreign_name.name + " // " + hash[:name_ja])
                             else
                                 hash.store(:name_ja, hash[:name_ja] + " // " + foreign_name.name)
+                            end
+                        elsif card.layout == "transform" then
+                            if card.names[0] == card.name then
+                                hash.store(:name_ja, foreign_name.name)
+                            else
+                                hash.store(:name_ja, "")
                             end
                         else
                             hash.store(:name_ja, foreign_name.name)

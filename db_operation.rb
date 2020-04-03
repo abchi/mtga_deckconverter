@@ -72,8 +72,7 @@ def mtg_cards(set)
                 hash.store(:name_en, card.name)
             end
             if card.foreign_names.empty? then
-                name = ""
-                hash.store(:name_ja, name)
+                hash.store(:name_ja, "")
             else
                 card.foreign_names.each do |foreign_name|
                     if foreign_name.language == "Japanese" then

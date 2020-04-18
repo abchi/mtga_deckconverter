@@ -12,16 +12,24 @@ end
 
 def read_deck_list(deck_list)
     return_data = Array.new
-    is_blankline = false
-    @is_brawl = false
+    blankline_count = 0
+    @is_commander = false
+    @is_companion = false
     deck_list.split("\r\n").each.with_index(1) do |file, i|
-        if file == "" && is_blankline == false then
-            return_data.push("\n")
-            is_blankline = true
+        if file == "" && blankline_count < 3 then
+            return_data.push("\r\n")
+            blankline_count += 1
+            if blankline_count == 3 then
+                is_commander = true
+                is_companion = true
+            end
         end
-        if file == "Commander" || (file == "" && i == 2) then
-            @is_brawl = true
+        if file == "Commander" then
+            @is_commander = true
+        elsif file == "Companion" then
+            @is_companion = true
         end
+
         file.each_line do |line|
             line.chomp!
             if line == "Sideboard" then
@@ -65,24 +73,34 @@ end
 
 def text_conversion(text_file, lang)
     return_text = String.new
+    @is_deck = false
     if !text_file.empty? then
-        if @is_brawl == true then
+        if @is_commander == true then
             case lang
             when "en" then
                 return_text = "Commander" + "\r\n"
             when "ja"
                 return_text = "統率者" + "\r\n"
             end
+        elsif @is_companion == true then
+            case lang
+            when "en" then
+                return_text = "Companion" + "\r\n"
+            when "ja"
+                return_text = "相棒" + "\r\n"
+            end
+            @is_companion = false
         else
             case lang
             when "en" then
                 return_text = "Deck" + "\r\n"
             when "ja"
                 return_text = "デッキ" + "\r\n"
-            end    
+            end
+            @is_deck = true
         end
         text_file.each do |line|
-            if line != "\n" then
+            if line != "\r\n" then
                 case lang
                 when "en" then
                     input_text = "#{line[0]} #{line[3]} (#{line[1]}) #{line[2]}"
@@ -92,13 +110,22 @@ def text_conversion(text_file, lang)
                 return_text += input_text + "\r\n"
             else
                 return_text += "\r\n"
-                if @is_brawl == true then
+                if @is_companion == true then
+                    case lang
+                    when "en" then
+                        return_text += "Companion" + "\r\n"
+                    when "ja"
+                        return_text += "相棒" + "\r\n"
+                    end
+                    @is_companion = false
+                elsif @is_deck == false then
                     case lang
                     when "en" then
                         return_text += "Deck" + "\r\n"
-                    when "ja"
+                    when "ja" then
                         return_text += "デッキ" + "\r\n"
                     end
+                    @is_deck = true
                 else
                     case lang
                     when "en" then

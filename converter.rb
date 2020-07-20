@@ -58,6 +58,9 @@ def read_deck_list(deck_list)
           if data.empty? then
             break
           end
+          if data[0] == "JMP" then
+            data = jump_start(data)
+          end
           data.unshift(card_count)
           return_data.push(data)
         rescue => error
@@ -138,4 +141,49 @@ def text_conversion(text_file, lang)
     end
   end
   return return_text
+end
+
+def jump_start(data)
+  case data[1].to_i
+  when 82
+    card_no = 3
+  when 86
+    card_no = 310
+  when 127
+    card_no = 4
+  when 167
+    card_no = 48
+  when 185
+    card_no = 74
+  when 230
+    card_no = 80
+  when 255
+    card_no = 84
+  when 270
+    card_no = 137
+  when 274
+    card_no = 123
+  when 278
+    card_no = 57
+  when 291
+    card_no = 88
+  when 302
+    card_no = 152
+  when 308
+    card_no = 139
+  when 319
+    card_no = 121
+  when 328
+    card_no = 130
+  when 342
+    card_no = 152
+  when 394
+    card_no = 178
+  when 428
+    card_no = 173
+  when 438
+    card_no = 143
+  end
+  data[1] = card_no
+  return data
 end

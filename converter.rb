@@ -183,6 +183,8 @@ def jump_start(data)
     card_no = 173
   when 438
     card_no = 143
+  else
+    card_no = data[1].to_i
   end
   data[1] = card_no
   return data

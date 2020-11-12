@@ -61,6 +61,7 @@ def read_deck_list(deck_list)
           if data[0] == "JMP" then
             data = jump_start(data)
           end
+          data[1] = data[1].to_i
           data.unshift(card_count)
           return_data.push(data)
         rescue => error

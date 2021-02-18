@@ -49,7 +49,7 @@ def read_deck_list(deck_list)
         card_name.gsub!(' ', '')
 
         card_count = line[0...index_card_first]
-        sql = "SELECT * FROM card_m WHERE (REPLACE(name_en, ' ', '') = $1 OR REPLACE(name_ja, ' ', '') = $2) AND isvalid = 1 ORDER BY RANDOM() LIMIT 1"
+        sql = "SELECT set, collector_number, text_en, text_ja FROM card_m WHERE (REPLACE(text_en, ' ', '') = $1 OR REPLACE(text_ja, ' ', '') = $2) AND isvalid = 1 ORDER BY RANDOM() LIMIT 1"
         begin
           data = @database.exec(sql, [card_name, card_name])[0].values
 

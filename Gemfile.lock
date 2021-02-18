@@ -1,46 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    axiom-types (0.1.1)
-      descendants_tracker (~> 0.0.4)
-      ice_nine (~> 0.11.0)
-      thread_safe (~> 0.3, >= 0.3.1)
     backports (3.17.1)
-    coercible (1.0.0)
-      descendants_tracker (~> 0.0.1)
-    declarative (0.0.10)
-    declarative-option (0.1.0)
-    descendants_tracker (0.0.4)
-      thread_safe (~> 0.3, >= 0.3.1)
-    equalizer (0.0.11)
-    faraday (0.17.3)
-      multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.14.0)
-      faraday (>= 0.7.4, < 1.0)
-    ice_nine (0.11.2)
-    json (2.3.0)
-    mtg_sdk (3.2.1)
-      faraday_middleware (~> 0.10)
-      json (~> 2.0)
-      multi_json (~> 1.12)
-      multi_xml (~> 0.5)
-      roar (~> 1.0)
-      virtus (~> 1.0)
     multi_json (1.14.1)
-    multi_xml (0.6.0)
-    multipart-post (2.1.1)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     pg (1.2.3)
     rack (2.2.3)
     rack-protection (2.0.8.1)
       rack
-    representable (3.0.4)
-      declarative (< 0.1.0)
-      declarative-option (< 0.2.0)
-      uber (< 0.2.0)
-    roar (1.1.0)
-      representable (~> 3.0.0)
     ruby2_keywords (0.0.2)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
@@ -54,23 +22,15 @@ GEM
       rack-protection (= 2.0.8.1)
       sinatra (= 2.0.8.1)
       tilt (~> 2.0)
-    thread_safe (0.3.6)
     tilt (2.0.10)
-    uber (0.1.0)
-    virtus (1.0.5)
-      axiom-types (~> 0.1)
-      coercible (~> 1.0)
-      descendants_tracker (~> 0.0, >= 0.0.3)
-      equalizer (~> 0.0, >= 0.0.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  mtg_sdk
   pg
   sinatra
   sinatra-contrib
 
 BUNDLED WITH
-   2.1.4
+   2.2.11

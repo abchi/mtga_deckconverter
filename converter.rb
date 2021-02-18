@@ -72,28 +72,28 @@ def read_deck_list(deck_list)
       end
     end
   end
-  return return_data
+  return_data
 end
 
 def text_conversion(text_file, lang)
   return_text = String.new
   @is_deck = false
-  if !text_file.empty?
-    if @is_commander == true
+  unless text_file.empty?
+    if @is_commander
       case lang
       when "en"
         return_text = "Commander" + "\r\n"
       when "ja"
         return_text = "統率者" + "\r\n"
       end
-    elsif @is_companion == true
+    elsif @is_companion
       case lang
       when "en"
         return_text = "Companion" + "\r\n"
       when "ja"
         return_text = "相棒" + "\r\n"
       end
-        @is_companion = false
+      @is_companion = false
     else
       case lang
       when "en"
@@ -101,7 +101,7 @@ def text_conversion(text_file, lang)
       when "ja"
         return_text = "デッキ" + "\r\n"
       end
-        @is_deck = true
+      @is_deck = true
     end
     text_file.each do |line|
       if line != "\r\n"
@@ -111,37 +111,37 @@ def text_conversion(text_file, lang)
         when "ja"
           input_text = "#{line[0]} #{line[4]} (#{line[1]}) #{line[2]}"
         end
-          return_text += input_text + "\r\n"
+        return_text += input_text + "\r\n"
       else
         return_text += "\r\n"
-        if @is_companion == true
+        if @is_companion
           case lang
           when "en"
             return_text += "Companion" + "\r\n"
           when "ja"
             return_text += "相棒" + "\r\n"
           end
-            @is_companion = false
-          elsif @is_deck == false
-            case lang
-            when "en"
-              return_text += "Deck" + "\r\n"
-            when "ja"
-              return_text += "デッキ" + "\r\n"
-            end
-              @is_deck = true
-          else
-            case lang
-            when "en"
-              return_text += "Sideboard" + "\r\n"
-            when "ja"
-              return_text += "サイドボード" + "\r\n"
-            end
-       end
+          @is_companion = false
+        elsif !@is_deck
+          case lang
+          when "en"
+            return_text += "Deck" + "\r\n"
+          when "ja"
+            return_text += "デッキ" + "\r\n"
+          end
+          @is_deck = true
+        else
+          case lang
+          when "en"
+            return_text += "Sideboard" + "\r\n"
+          when "ja"
+            return_text += "サイドボード" + "\r\n"
+          end
+        end
       end
     end
   end
-  return return_text
+  return_text
 end
 
 def jump_start(data)
@@ -188,5 +188,5 @@ def jump_start(data)
     card_no = data[1].to_i
   end
   data[1] = card_no
-  return data
+  data
 end

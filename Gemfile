@@ -8,5 +8,5 @@ gem "pg"
 gem "sinatra"
 
 group :development do
-    gem "sinatra-contrib"
+  gem "sinatra-contrib"
 end

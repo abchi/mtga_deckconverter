@@ -25,9 +25,9 @@ def read_deck_list(deck_list)
       end
     end
     if file == "Commander"
-        @is_commander = true
+      @is_commander = true
     elsif file == "Companion"
-        @is_companion = true
+      @is_companion = true
     end
 
     file.each_line do |line|
@@ -37,12 +37,12 @@ def read_deck_list(deck_list)
         index_card_first = line.index(" ")
         index_card_end = line.index(" (")
         if index_card_first.nil?
-            break
+          break
         end
         if index_card_end.nil?
-            card_name = line[index_card_first + 1..-1]
+          card_name = line[index_card_first + 1..-1]
         else
-            card_name = line[index_card_first + 1..index_card_end - 1]
+          card_name = line[index_card_first + 1..index_card_end - 1]
         end
 
         card_name.gsub!("　", " ")

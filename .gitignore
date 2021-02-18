@@ -1,4 +1,5 @@
-/.bundle
-work.rb
-memo.txt
 .DS_Store
+.idea
+/.bundle
+memo.txt
+work.rb

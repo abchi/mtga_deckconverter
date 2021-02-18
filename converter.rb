@@ -36,9 +36,9 @@ def read_deck_list(deck_list)
       elsif line != ""
         index_card_first = line.index(" ")
         index_card_end = line.index(" (")
-        if index_card_first.nil?
-          break
-        end
+
+        break if index_card_first.nil?
+
         if index_card_end.nil?
           card_name = line[index_card_first + 1..-1]
         else
@@ -52,12 +52,10 @@ def read_deck_list(deck_list)
         sql = "SELECT * FROM card_m WHERE (REPLACE(name_en, ' ', '') = $1 OR REPLACE(name_ja, ' ', '') = $2) AND isvalid = 1 ORDER BY RANDOM() LIMIT 1"
         begin
           data = @database.exec(sql, [card_name, card_name])[0].values
-          if data.empty?
-            break
-          end
-          if data[0] == "JMP"
-            data = jump_start(data)
-          end
+
+          break if data.empty?
+          data = jump_start(data) if data[0] == "JMP"
+
           data[1] = data[1].to_i
           data.unshift(card_count)
           return_data.push(data)

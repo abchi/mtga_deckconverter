@@ -33,6 +33,7 @@ def read_deck_list(deck_list)
     file.each_line do |line|
       line.chomp!
       if line == 'Sideboard'
+        nil
       elsif line != ''
         index_card_first = line.index(' ')
         index_card_end = line.index(' (')

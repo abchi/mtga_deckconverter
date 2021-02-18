@@ -20,8 +20,8 @@ def read_deck_list(deck_list)
       return_data.push("\r\n")
       blankline_count += 1
       if blankline_count == 3
-        is_commander = true
-        is_companion = true
+        @is_commander = true
+        @is_companion = true
       end
     end
     if file == "Commander"

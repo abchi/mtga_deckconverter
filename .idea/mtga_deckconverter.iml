@@ -13,9 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="backports (v3.17.1, rbenv: 3.0.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.2.11, rbenv: 3.0.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="faraday_middleware (v0.14.0, rbenv: 3.0.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.14.1, rbenv: 3.0.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="multipart-post (v2.1.1, rbenv: 3.0.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mustermann (v1.1.1, rbenv: 3.0.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v1.2.3, rbenv: 3.0.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.2.3, rbenv: 3.0.0) [gem]" level="application" />

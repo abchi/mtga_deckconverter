@@ -3,7 +3,7 @@ Bundler.require
 require "yaml"
 require "erb"
 
-if development? then
+if development?
   $dbconf = YAML.load(ERB.new(File.read("./database.yml")).result)["development"]
 else
   $dbconf = YAML.load(ERB.new(File.read("./database.yml")).result)["production"]
@@ -16,30 +16,30 @@ def read_deck_list(deck_list)
   @is_commander = false
   @is_companion = false
   deck_list.split("\r\n").each.with_index(1) do |file, i|
-    if file == "" && blankline_count < 3 then
+    if file == "" && blankline_count < 3
       return_data.push("\r\n")
       blankline_count += 1
-      if blankline_count == 3 then
+      if blankline_count == 3
         is_commander = true
         is_companion = true
       end
     end
-    if file == "Commander" then
+    if file == "Commander"
         @is_commander = true
-    elsif file == "Companion" then
+    elsif file == "Companion"
         @is_companion = true
     end
 
     file.each_line do |line|
       line.chomp!
-      if line == "Sideboard" then
-      elsif line != "" then
+      if line == "Sideboard"
+      elsif line != ""
         index_card_first = line.index(" ")
         index_card_end = line.index(" (")
-        if index_card_first.nil? then
+        if index_card_first.nil?
             break
         end
-        if index_card_end.nil? then
+        if index_card_end.nil?
             card_name = line[index_card_first + 1..-1]
         else
             card_name = line[index_card_first + 1..index_card_end - 1]
@@ -55,10 +55,10 @@ def read_deck_list(deck_list)
         sql = "SELECT * FROM card_m WHERE (REPLACE(name_en, ' ', '') = $1 OR REPLACE(name_ja, ' ', '') = $2) AND isvalid = 1 ORDER BY RANDOM() LIMIT 1"
         begin
           data = @database.exec(sql, [card_name, card_name])[0].values
-          if data.empty? then
+          if data.empty?
             break
           end
-          if data[0] == "JMP" then
+          if data[0] == "JMP"
             data = jump_start(data)
           end
           data[1] = data[1].to_i
@@ -78,17 +78,17 @@ end
 def text_conversion(text_file, lang)
   return_text = String.new
   @is_deck = false
-  if !text_file.empty? then
-    if @is_commander == true then
+  if !text_file.empty?
+    if @is_commander == true
       case lang
-      when "en" then
+      when "en"
         return_text = "Commander" + "\r\n"
       when "ja"
         return_text = "統率者" + "\r\n"
       end
-    elsif @is_companion == true then
+    elsif @is_companion == true
       case lang
-      when "en" then
+      when "en"
         return_text = "Companion" + "\r\n"
       when "ja"
         return_text = "相棒" + "\r\n"
@@ -96,7 +96,7 @@ def text_conversion(text_file, lang)
         @is_companion = false
     else
       case lang
-      when "en" then
+      when "en"
         return_text = "Deck" + "\r\n"
       when "ja"
         return_text = "デッキ" + "\r\n"
@@ -104,37 +104,37 @@ def text_conversion(text_file, lang)
         @is_deck = true
     end
     text_file.each do |line|
-      if line != "\r\n" then
+      if line != "\r\n"
         case lang
-        when "en" then
+        when "en"
           input_text = "#{line[0]} #{line[3]} (#{line[1]}) #{line[2]}"
-        when "ja" then
+        when "ja"
           input_text = "#{line[0]} #{line[4]} (#{line[1]}) #{line[2]}"
         end
           return_text += input_text + "\r\n"
       else
         return_text += "\r\n"
-        if @is_companion == true then
+        if @is_companion == true
           case lang
-          when "en" then
+          when "en"
             return_text += "Companion" + "\r\n"
           when "ja"
             return_text += "相棒" + "\r\n"
           end
             @is_companion = false
-          elsif @is_deck == false then
+          elsif @is_deck == false
             case lang
-            when "en" then
+            when "en"
               return_text += "Deck" + "\r\n"
-            when "ja" then
+            when "ja"
               return_text += "デッキ" + "\r\n"
             end
               @is_deck = true
           else
             case lang
-            when "en" then
+            when "en"
               return_text += "Sideboard" + "\r\n"
-            when "ja" then
+            when "ja"
               return_text += "サイドボード" + "\r\n"
             end
        end

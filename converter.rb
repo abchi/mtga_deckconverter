@@ -48,9 +48,6 @@ def read_deck_list(deck_list)
         card_name.gsub!("　", " ")
         card_name.gsub!(" ", "")
 
-        # /の数は2つにする。MTGAの分割カード名称には/が2つ付いている。
-        card_name.gsub!(/\/{1,}/, "//")
-
         card_count = line[0...index_card_first]
         sql = "SELECT * FROM card_m WHERE (REPLACE(name_en, ' ', '') = $1 OR REPLACE(name_ja, ' ', '') = $2) AND isvalid = 1 ORDER BY RANDOM() LIMIT 1"
         begin

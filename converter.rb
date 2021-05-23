@@ -56,7 +56,6 @@ def read_deck_list(deck_list)
 
           break if data.empty?
 
-          data[1] = data[1].to_i
           data.unshift(card_count)
           return_data.push(data)
         rescue => error

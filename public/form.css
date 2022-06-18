@@ -1,20 +1,24 @@
 body {
-    color: #000000;
-    background: #66cdaa;
+  color: #000000;
+  background: #66cdaa;
 }
+
 textarea {
-    resize: both;
-    width: 600px;
-    height: 800px;
+  resize: both;
+  width: 600px;
+  height: 800px;
 }
+
 .box {
-    width: 750px;
+  width: 750px;
 }
+
 .textarea {
-    float: left;
-    margin: 10px;
+  float: left;
+  margin: 10px;
 }
+
 .submit_button {
-    float: left;
-    margin: 10px;
+  float: left;
+  margin: 10px;
 }

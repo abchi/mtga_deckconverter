@@ -4,8 +4,11 @@ GEM
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    pg (1.2.3)
-    rack (2.2.3)
+    nio4r (2.5.8)
+    pg (1.4.1)
+    puma (5.6.4)
+      nio4r (~> 2.0)
+    rack (2.2.4)
     rack-protection (2.2.0)
       rack
     ruby2_keywords (0.0.5)
@@ -27,8 +30,12 @@ PLATFORMS
 
 DEPENDENCIES
   pg
+  puma
   sinatra
   sinatra-contrib
+
+RUBY VERSION
+   ruby 3.1.2p20
 
 BUNDLED WITH
    2.2.31
